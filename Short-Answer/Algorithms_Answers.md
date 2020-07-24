@@ -4,7 +4,7 @@
 
 a) O(n). This is similar to a for loop in the sense that the loop executes N times. meaning eventually it'll stop once a > n^3.
 
-b) 0(n^2). We have a nested while loop in a for loop, meaning we are performing double the operations.
+b) LogN. We have a nested while loop in a for loop, meaning we are performing double the operations.
 
 c) O(n). The function is callings itself once, recursively until it reaches its base case.
 
