@@ -109,6 +109,7 @@ class SortingRobot:
         # print(self.can_move_left())
 
 
+        # Final Working robot
         while not self.light_is_on():
             self.set_light_on()
             while self.can_move_right():
