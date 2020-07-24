@@ -96,15 +96,106 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
+        # # Fill this out
+        # print(self.light_is_on())
+        # self.set_light_on()
+        # print(self.light_is_on())
+        #
+        # print(self.can_move_right())
+        # print(self.move_right())
+        # print(self.swap_item())
+        # print(self.move_right())
+        # print(self.swap_item())
+        # print(self.can_move_left())
 
-        arr = len(self._list)
-        for i in range(arr):
-            for j in range(0, arr-i-1):
-                if self._list[j] > self._list[j+1]:
-                    self._list[j], self._list[j+1] = self._list[j+1], self._list[j]
-        return self._list
 
+        while not self.light_is_on():
+            self.set_light_on()
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+
+                print(f"I picked up {self._item} and moved right: {self._list}")
+
+                if self.compare_item() > 0:
+                    self.swap_item()
+
+                    self.move_left() # go back to the empty spot now
+                    #print(f"I moved left")
+                    self.swap_item() # swap the smaller thing for bigger thing
+                    #print(f"I put it down and now I have {self._item}: {self._list}")
+                    self.move_right() # go to the right again
+                    #print(f"I moved right")
+                    self.set_light_off() # repeat this whole thing
+                    #print(f"I turned the light off (a swap occured)")
+                else: # If my thing is not bigger
+                    #print(f"My {self._item} is smaller")
+                    self.move_left()
+                    #print(f"I moved left")
+                    self.swap_item() # move left and swap it back
+                    #print(f"I swapped it for {self._item}: {self._list}")
+                    self.move_right() # move to the right again
+                    #print(f"I moved right")
+                    #print(f"Is the light on? {self.light_is_on()}")
+            if not self.light_is_on(): # should fall here when no longer able to move right and light has been turned off
+                #print(f"The light is off\nI can't move right anymore")
+                while self.can_move_left():
+                    self.move_left() # and move all the way to the beginning again
+                    #print(f"I moved left")
+                    #print(f"Is the light on? {self.light_is_on()}")
+
+            # print(self.light_is_on())
+            # print(self.can_move_right())
+            # print(self.move_right())
+            # self.move_right()
+            # if self.compare_item() > 0:
+            #     print(self.item)
+            
+
+        # while self.light_is_on():
+        #     while self.can_move_right():
+        #         if self.compare_item() > 0:
+        #             self.swap_item()
+        #             self.move_right()
+        #
+        #         elif self.can_move_left():
+        #             self.swap_item()
+        #             self.move_left()
+        #
+        # self.set_light_off()
+
+
+
+
+
+
+
+
+
+        #
+        # # bubble sort solution
+        # arr = len(self._list)
+        # self.set_light_on()
+        # print(self.light_is_on())
+        # print(self.move_right())
+        #
+        #
+        #
+        # for i in range(arr):
+        #     for j in range(0, arr-i-1):
+        #         if self.compare_item()[j] > 0:
+        #             self._list[j], self._list[j+1] = self._list[j+1], self._list[j]
+        # return self._list
+
+
+
+
+
+        # for i in range(arr):
+        #     for j in range(0, arr-i-1):
+        #         if self._list[j] > self._list[j+1]:
+        #             self._list[j], self._list[j+1] = self._list[j+1], self._list[j]
+        # return self._list
 
 
 
@@ -112,8 +203,8 @@ class SortingRobot:
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
-
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 4, 2, 1]
+    x = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
 
